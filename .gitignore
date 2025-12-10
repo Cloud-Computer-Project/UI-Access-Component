@@ -74,3 +74,6 @@ linux/flutter/ephemeral/
 
 # Exceptions to above rules
 !/android/app/src/main/AndroidManifest.xml
+
+#figma 
+react_design/
