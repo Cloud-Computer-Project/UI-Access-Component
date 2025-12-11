@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:software_eng/screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/charts_screen.dart';
 import 'screens/alerts_screen.dart';
@@ -22,7 +23,7 @@ class EnergyMonitoringApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
       ),
-      home: const MainNavigation(),
+      home: const LoginScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
