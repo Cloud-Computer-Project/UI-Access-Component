@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../main.dart'; // MainNavigation'a erişmek için import ediyoruz
+import '../main.dart'; // Import to navigate to MainNavigation
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -9,11 +9,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // Input verilerini kontrol etmek için controller'lar
+  // Controllers to read the input values
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // Şifre gizle/göster durumu (opsiyonel ama kullanışlı)
+  // Toggle to hide/show the password text
   bool _isObscure = true;
 
   @override
@@ -23,23 +23,22 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  // Giriş yapma fonksiyonu
+  // Handle login tap
   void _handleLogin() {
-    // Burada normalde backend isteği atılır.
-    // Şimdilik sadece alanlar dolu mu diye bakıp geçiş yapıyoruz.
+    // Normally you would call the backend here; for now we just check emptiness
     if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
       
-      // Başarılı giriş simülasyonu -> Ana Sayfaya Yönlendirme
-      // pushReplacement kullanıyoruz ki kullanıcı 'Geri' tuşuna basınca tekrar login'e dönmesin.
+      // Simulate success -> navigate to home
+      // Use pushReplacement so back does not return to login
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const MainNavigation()),
       );
     } else {
-      // Uyarı göster
+      // Show warning
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Lütfen email ve şifre giriniz'),
+          content: Text('Please enter email and password'),
           backgroundColor: Colors.redAccent,
         ),
       );
@@ -60,21 +59,21 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 const Spacer(flex: 2),
                 
-                // --- LOGO ALANI ---
-                // Görseldeki logoyu simüle eden tasarım
+                // --- LOGO ---
+                // Simple circle with bolt icon
                 Container(
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: const Color(0xFFF4A261), // Turuncu renk
+                      color: const Color(0xFFF4A261), // Orange accent
                       width: 4,
                     ),
                   ),
                   child: Center(
                     child: Icon(
-                      Icons.electric_bolt_rounded, // Şimşek ikonu
+                      Icons.electric_bolt_rounded, // Lightning icon
                       size: 50,
                       color: const Color(0xFFF4A261),
                     ),
@@ -83,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 
                 const SizedBox(height: 24),
 
-                // --- BAŞLIK ---
+                // --- TITLE ---
                 const Text(
                   "Let’s Get\nStarted",
                   textAlign: TextAlign.center,
@@ -117,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: "Enter your email",
                     hintStyle: TextStyle(color: Colors.grey[400]),
                     filled: true,
-                    fillColor: Colors.grey[100], // Hafif gri arka plan
+                    fillColor: Colors.grey[100], // Light gray background
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -177,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ElevatedButton(
                     onPressed: _handleLogin,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF213EA7), // Proje ana rengi
+                      backgroundColor: const Color(0xFF213EA7), // App primary color
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -206,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        // Register sayfasına gitme kodu buraya gelecek
+                        // TODO: navigate to register screen
                       },
                       child: const Text(
                         "Register",
